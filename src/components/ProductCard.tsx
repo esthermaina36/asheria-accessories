@@ -1,6 +1,6 @@
 type ProductCardProps = {
   name: string;
-  price: string;
+  price: number;
   image?: string;
 };
 
@@ -29,7 +29,7 @@ export default function ProductCard({
         </h3>
 
         <p className="mt-1 text-sm text-gray-600">
-          {price}
+           KSh {price.toLocaleString()}
         </p>
 
         <button className="mt-3 rounded-full border border-[#9b6b52] px-5 py-2 text-sm font-medium text-[#9b6b52] transition hover:bg-[#9b6b52] hover:text-white">
