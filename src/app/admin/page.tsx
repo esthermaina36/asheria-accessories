@@ -110,12 +110,12 @@ export default async function AdminDashboard() {
               </p>
             </div>
 
-            <button
-              type="button"
-              className="rounded-full bg-[#9b6b52] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#76503e]"
-            >
-              + Add Product
-            </button>
+            <a
+  href="/admin/products/new"
+  className="rounded-full bg-[#9b6b52] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#76503e]"
+>
+  + Add Product
+</a>
           </div>
 
           {/* Product list */}
@@ -165,12 +165,12 @@ export default async function AdminDashboard() {
                         </span>
                       </div>
 
-                      <button
-                        type="button"
-                        className="rounded-full border border-[#9b6b52] px-4 py-2 text-sm font-medium text-[#9b6b52] transition hover:bg-[#9b6b52] hover:text-white"
-                      >
-                        Edit
-                      </button>
+                      <a
+  href={`/admin/products/edit/${product.id}`}
+  className="rounded-full border border-[#9b6b52] px-4 py-2 text-sm font-medium text-[#9b6b52] transition hover:bg-[#9b6b52] hover:text-white"
+>
+  Edit
+</a>
                     </div>
                   </div>
                 ))}
