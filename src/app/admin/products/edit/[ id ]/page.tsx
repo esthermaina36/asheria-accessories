@@ -125,20 +125,32 @@ const productId =
         imageUrl = publicUrlData.publicUrl;
       }
 
-      const { error: updateError } = await supabase
-        .from("products")
-        .update({
-          name,
-          description,
-          price: Number(price),
-          category,
-          image_url: imageUrl,
-          stock: Number(stock),
-          featured,
-          new_arrival: newArrival,
-          active,
-        })
-        .eq("id", productId);
+      const { data: updatedProduct, error: updateError } = await supabase
+  .from("products")
+  .update({
+    name,
+    description,
+    price: Number(price),
+    category,
+    image_url: imageUrl,
+    stock: Number(stock),
+    featured,
+    new_arrival: newArrival,
+    active,
+  })
+  .eq("id", productId)
+  .select()
+  .maybeSingle();
+
+if (updateError) {
+  throw new Error(updateError.message);
+}
+
+if (!updatedProduct) {
+  throw new Error(
+    "The product was not updated. Please check your Supabase update policy and make sure you are logged in as an admin."
+  );
+}
 
       if (updateError) {
         throw new Error(updateError.message);

@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import DeleteProductButton from "@/components/DeleteProductButton";
 
 export default async function AdminDashboard() {
   const supabase = await createClient();
@@ -165,12 +166,19 @@ export default async function AdminDashboard() {
                         </span>
                       </div>
 
-                      <a
-  href={`/admin/products/edit/${product.id}`}
-  className="rounded-full border border-[#9b6b52] px-4 py-2 text-sm font-medium text-[#9b6b52] transition hover:bg-[#9b6b52] hover:text-white"
->
-  Edit
-</a>
+                      <div className="flex items-center gap-2">
+  <a
+    href={`/admin/products/edit/${product.id}`}
+    className="rounded-full border border-[#9b6b52] px-4 py-2 text-sm font-medium text-[#9b6b52] transition hover:bg-[#9b6b52] hover:text-white"
+  >
+    Edit
+  </a>
+
+  <DeleteProductButton
+    productId={product.id}
+    productName={product.name}
+  />
+</div>
                     </div>
                   </div>
                 ))}
