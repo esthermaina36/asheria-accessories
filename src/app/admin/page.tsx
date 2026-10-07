@@ -177,6 +177,7 @@ export default async function AdminDashboard() {
   <DeleteProductButton
     productId={product.id}
     productName={product.name}
+     imageUrl={product.image_url}
   />
 </div>
                     </div>

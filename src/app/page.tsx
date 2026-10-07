@@ -1,5 +1,6 @@
 import ProductCard from "@/components/ProductCard";
 import { createClient } from "@/lib/supabase/server";
+import CartButton from "@/components/CartButton";
 
 export default async function Home() {
   // Connect to Supabase
@@ -72,12 +73,7 @@ export default async function Home() {
           </nav>
 
           {/* Cart */}
-          <button
-            type="button"
-            className="rounded-full border border-[#9b6b52] px-5 py-2 text-sm font-medium text-[#9b6b52] transition hover:bg-[#9b6b52] hover:text-white"
-          >
-            Cart (0)
-          </button>
+         <CartButton />
         </div>
       </header>
 
@@ -259,6 +255,7 @@ export default async function Home() {
               {products.map((product) => (
                 <ProductCard
                   key={product.id}
+                  id={product.id}
                   name={product.name}
                   price={Number(product.price)}
                   image={product.image_url ?? undefined}

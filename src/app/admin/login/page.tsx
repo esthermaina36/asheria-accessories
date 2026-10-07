@@ -8,6 +8,8 @@ export default function AdminLoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [resetting, setResetting] = useState(false);
+  const [resetMessage, setResetMessage] = useState("");
 
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -30,6 +32,35 @@ export default function AdminLoginPage() {
 
     window.location.href = "/admin";
   }
+
+  async function handleForgotPassword() {
+  if (!email) {
+    setError("Please enter your email address first.");
+    return;
+  }
+
+  setError("");
+  setResetMessage("");
+  setResetting(true);
+
+  const supabase = createClient();
+
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${window.location.origin}/auth/reset-password`,
+  });
+
+  if (error) {
+    setError(error.message);
+    setResetting(false);
+    return;
+  }
+
+  setResetMessage(
+    "Password reset instructions have been sent to your email.",
+  );
+
+  setResetting(false);
+}
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#fffaf7] px-6">
@@ -85,6 +116,16 @@ export default function AdminLoginPage() {
               required
               className="w-full rounded-xl border border-[#ded2cb] px-4 py-3 outline-none transition focus:border-[#9b6b52]"
             />
+            <div className="mt-2 text-right">
+  <button
+    type="button"
+    onClick={handleForgotPassword}
+    disabled={resetting}
+    className="text-sm font-medium text-[#9b6b52] transition hover:text-[#76503e] disabled:opacity-60"
+  >
+    {resetting ? "Sending..." : "Forgot Password?"}
+  </button>
+</div>
           </div>
 
           {error && (
@@ -92,6 +133,11 @@ export default function AdminLoginPage() {
               {error}
             </div>
           )}
+          {resetMessage && (
+  <div className="rounded-xl bg-green-50 px-4 py-3 text-sm text-green-700">
+    {resetMessage}
+  </div>
+)}
 
           <button
             type="submit"
