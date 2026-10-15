@@ -3,29 +3,26 @@ import { createClient } from "@/lib/supabase/server";
 import CartButton from "@/components/CartButton";
 
 export default async function Home() {
-  // Connect to Supabase
+  
   const supabase = await createClient();
 
-  // Get active products from the database
   const { data: products, error } = await supabase
     .from("products")
     .select("*")
     .eq("active", true)
     .order("created_at", { ascending: false });
 
-  // Show database errors in the terminal
+  
   if (error) {
     console.error("Error fetching products:", error);
   }
 
   return (
     <main className="min-h-screen bg-[#fffaf7] text-[#2d2522]">
-      {/* =========================
-          NAVIGATION
-      ========================== */}
+    
       <header className="sticky top-0 z-50 border-b border-[#eaded7] bg-[#fffaf7]/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          {/* Logo */}
+        
           <a
             href="#home"
             className="text-2xl font-bold tracking-tight text-[#9b6b52]"
@@ -34,7 +31,7 @@ export default async function Home() {
             <span className="text-[#2d2522]"> Accessories</span>
           </a>
 
-          {/* Navigation */}
+        
           <nav className="hidden items-center gap-8 md:flex">
             <a
               href="#home"
@@ -72,72 +69,57 @@ export default async function Home() {
             </a>
           </nav>
 
-          {/* Cart */}
+         
          <CartButton />
         </div>
       </header>
 
-      {/* =========================
-          HERO SECTION
-      ========================== */}
+     
       <section
         id="home"
-        className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 md:grid-cols-2 md:py-28"
+       className="flex min-h-[580px] w-full items-center justify-center px-6 py-20 md:py-28"
       >
-        {/* Hero Text */}
-        <div>
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-[#9b6b52]">
-            Accessories made for you
-          </p>
+      
+        ```tsx
+<div className="mx-auto flex w-full max-w-4xl flex-col items-center text-center">
+  <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#9b6b52]">
+    Accessories made for you
+  </p>
 
-          <h1 className="max-w-xl text-5xl font-bold leading-tight tracking-tight md:text-6xl">
-            Simple pieces.
-            <br />
-            Beautiful moments.
-          </h1>
+  <h1 className="mt-5 max-w-3xl text-5xl font-bold leading-tight tracking-tight md:text-6xl">
+    Simple pieces.
+    <br />
+    Beautiful moments.
+  </h1>
 
-          <p className="mt-6 max-w-lg text-lg leading-8 text-gray-600">
-            Discover beautiful and affordable accessories carefully selected
-            to add a little more style, confidence, and personality to your
-            everyday look.
-          </p>
+  <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600">
+    Discover beautiful and affordable accessories carefully selected
+    to add a little more style, confidence, and personality to your
+    everyday look.
+  </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="#shop"
-              className="rounded-full bg-[#9b6b52] px-7 py-3 font-medium text-white transition hover:bg-[#76503e]"
-            >
-              Shop Now
-            </a>
+  <div className="mt-8 flex flex-wrap justify-center gap-4">
+    <a
+      href="#shop"
+      className="rounded-full bg-[#9b6b52] px-7 py-3 font-medium text-white transition hover:bg-[#76503e]"
+    >
+      Shop Now
+    </a>
 
-            <a
-              href="#categories"
-              className="rounded-full border border-[#9b6b52] px-7 py-3 font-medium text-[#9b6b52] transition hover:bg-[#9b6b52] hover:text-white"
-            >
-              Explore Categories
-            </a>
-          </div>
-        </div>
+    <a
+      href="#categories"
+      className="rounded-full border border-[#9b6b52] px-7 py-3 font-medium text-[#9b6b52] transition hover:bg-[#9b6b52] hover:text-white"
+    >
+      Explore Categories
+    </a>
+  </div>
+</div>
 
-        {/* Hero Visual */}
-        <div className="flex min-h-[420px] items-center justify-center rounded-[2rem] bg-[#f6eee8] p-10">
-          <div className="text-center">
-            <div className="text-8xl">✨</div>
 
-            <p className="mt-6 text-2xl font-semibold text-[#76503e]">
-              Asheria Accessories
-            </p>
-
-            <p className="mt-2 text-gray-600">
-              Your style, your story.
-            </p>
-          </div>
-        </div>
+       
       </section>
 
-      {/* =========================
-          CATEGORIES
-      ========================== */}
+      
       <section id="categories" className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-center">
@@ -155,7 +137,7 @@ export default async function Home() {
           </div>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {/* Jewellery */}
+            
             <a
               href="#shop"
               className="group rounded-3xl bg-[#f6eee8] p-8 text-center transition hover:-translate-y-1 hover:shadow-lg"
@@ -171,7 +153,7 @@ export default async function Home() {
               </p>
             </a>
 
-            {/* Watches */}
+           
             <a
               href="#shop"
               className="group rounded-3xl bg-[#f6eee8] p-8 text-center transition hover:-translate-y-1 hover:shadow-lg"
@@ -187,7 +169,7 @@ export default async function Home() {
               </p>
             </a>
 
-            {/* Hair Accessories */}
+          
             <a
               href="#shop"
               className="group rounded-3xl bg-[#f6eee8] p-8 text-center transition hover:-translate-y-1 hover:shadow-lg"
@@ -203,7 +185,6 @@ export default async function Home() {
               </p>
             </a>
 
-            {/* Necklaces */}
             <a
               href="#shop"
               className="group rounded-3xl bg-[#f6eee8] p-8 text-center transition hover:-translate-y-1 hover:shadow-lg"
@@ -222,9 +203,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* =========================
-          PRODUCTS
-      ========================== */}
+     
       <section id="shop" className="py-20">
         <div className="mx-auto max-w-7xl px-6">
           {/* Section Heading */}
@@ -249,7 +228,7 @@ export default async function Home() {
             </span>
           </div>
 
-          {/* Product Grid */}
+          
           {products && products.length > 0 ? (
             <div className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {products.map((product) => (
@@ -278,24 +257,11 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* =========================
-          ABOUT SECTION
-      ========================== */}
       <section id="about" className="bg-[#f6eee8] py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid items-center gap-12 md:grid-cols-2">
-            {/* Visual */}
-            <div className="flex min-h-[380px] items-center justify-center rounded-[2rem] bg-[#fffaf7]">
-              <div className="text-center">
-                <div className="text-8xl">🤎</div>
-
-                <p className="mt-6 text-2xl font-semibold text-[#76503e]">
-                  Made with love
-                </p>
-              </div>
-            </div>
-
-            {/* Text */}
+          <div className="mx-auto max-w-4xl text-center">
+         
+            
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#9b6b52]">
                 About Asheria

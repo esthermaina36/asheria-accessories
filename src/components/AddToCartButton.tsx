@@ -22,12 +22,7 @@ export default function AddToCartButton({
   const [added, setAdded] = useState(false);
 
   function handleAddToCart() {
-    addToCart({
-      id,
-      name,
-      price,
-      image,
-    });
+    addToCart({id, name, price, image, stock});
 
     setAdded(true);
 

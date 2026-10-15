@@ -14,6 +14,7 @@ export type CartItem = {
   price: number;
   image?: string | null;
   quantity: number;
+  stock: number;
 };
 
 type CartContextType = {
@@ -35,13 +36,43 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
 const [cartLoaded, setCartLoaded] = useState(false);
 
-  // Load the cart from the browser
- useEffect(() => {
+ 
+
+useEffect(() => {
   const savedCart = localStorage.getItem("asheria-cart");
 
   if (savedCart) {
     try {
-      setCart(JSON.parse(savedCart));
+      const parsedCart = JSON.parse(savedCart);
+
+      if (Array.isArray(parsedCart)) {
+        const updatedCart: CartItem[] = parsedCart
+          .filter(
+            (item) =>
+              item &&
+              typeof item.id === "string" &&
+              typeof item.name === "string" &&
+              Number.isFinite(Number(item.price)) &&
+              Number.isFinite(Number(item.quantity)),
+          )
+          .map((item) => ({
+            ...item,
+            price: Number(item.price),
+            quantity: Math.max(1, Math.floor(Number(item.quantity))),
+            stock: Number.isFinite(Number(item.stock))
+              ? Math.max(0, Math.floor(Number(item.stock)))
+              : 0,
+          }))
+          .filter((item) => item.stock > 0)
+          .map((item) => ({
+            ...item,
+            quantity: Math.min(item.quantity, item.stock),
+          }));
+
+        setCart(updatedCart);
+      } else {
+        localStorage.removeItem("asheria-cart");
+      }
     } catch {
       localStorage.removeItem("asheria-cart");
     }
@@ -50,7 +81,8 @@ const [cartLoaded, setCartLoaded] = useState(false);
   setCartLoaded(true);
 }, []);
 
-  // Save the cart whenever it changes
+
+
   useEffect(() => {
   if (!cartLoaded) {
     return;
@@ -59,32 +91,41 @@ const [cartLoaded, setCartLoaded] = useState(false);
   localStorage.setItem("asheria-cart", JSON.stringify(cart));
 }, [cart, cartLoaded]);
 
-  function addToCart(item: Omit<CartItem, "quantity">) {
-    setCart((currentCart) => {
-      const existingItem = currentCart.find(
-        (cartItem) => cartItem.id === item.id,
-      );
-
-      if (existingItem) {
-        return currentCart.map((cartItem) =>
-          cartItem.id === item.id
-            ? {
-                ...cartItem,
-                quantity: cartItem.quantity + 1,
-              }
-            : cartItem,
-        );
-      }
-
-      return [
-        ...currentCart,
-        {
-          ...item,
-          quantity: 1,
-        },
-      ];
-    });
+  
+function addToCart(item: Omit<CartItem, "quantity">) {
+  if (item.stock <= 0) {
+    return;
   }
+
+  setCart((currentCart) => {
+    const existingItem = currentCart.find(
+      (cartItem) => cartItem.id === item.id,
+    );
+
+    if (existingItem) {
+      return currentCart.map((cartItem) =>
+        cartItem.id === item.id
+          ? {
+              ...cartItem,
+              quantity: Math.min(
+                cartItem.quantity + 1,
+                item.stock,
+              ),
+            }
+          : cartItem,
+      );
+    }
+
+    return [
+      ...currentCart,
+      {
+        ...item,
+        quantity: 1,
+      },
+    ];
+  });
+}
+
 
   function removeFromCart(id: string) {
     setCart((currentCart) =>
@@ -92,18 +133,19 @@ const [cartLoaded, setCartLoaded] = useState(false);
     );
   }
 
-  function increaseQuantity(id: string) {
-    setCart((currentCart) =>
-      currentCart.map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              quantity: item.quantity + 1,
-            }
-          : item,
-      ),
-    );
-  }
+
+function increaseQuantity(id: string) {
+  setCart((currentCart) =>
+    currentCart.map((item) =>
+      item.id === id
+        ? {
+            ...item,
+            quantity: Math.min(item.quantity + 1, item.stock),
+          }
+        : item,
+    ),
+  );
+}
 
   function decreaseQuantity(id: string) {
     setCart((currentCart) =>
