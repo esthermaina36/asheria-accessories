@@ -152,11 +152,7 @@ if (!updatedProduct) {
   );
 }
 
-      if (updateError) {
-        throw new Error(updateError.message);
-      }
-
-      setMessage("Product updated successfully!");
+     
 
       setProduct((current) =>
         current

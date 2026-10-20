@@ -80,7 +80,7 @@ export default async function Home() {
        className="flex min-h-[580px] w-full items-center justify-center px-6 py-20 md:py-28"
       >
       
-        ```tsx
+        
 <div className="mx-auto flex w-full max-w-4xl flex-col items-center text-center">
   <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#9b6b52]">
     Accessories made for you
@@ -250,7 +250,7 @@ export default async function Home() {
               </h3>
 
               <p className="mt-2 text-gray-600">
-                We&apos;re preparing something beautiful for you.
+                We are preparing something beautiful for you.
               </p>
             </div>
           )}
