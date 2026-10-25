@@ -157,14 +157,12 @@ export default function CartPage() {
                 your order is completed.
               </p>
 
-              <button
-                type="button"
-                disabled
-                className="mt-6 w-full cursor-not-allowed rounded-full bg-gray-300 px-5 py-3 font-medium text-gray-600"
-                title="Checkout will be enabled in a later step"
-              >
-                Checkout — Coming Soon
-              </button>
+              <Link
+  href="/checkout"
+  className="block w-full rounded-full bg-[#9b6b52] px-6 py-4 text-center font-medium text-white transition hover:bg-[#76503e]"
+>
+  Proceed to Checkout
+</Link>
 
               <Link
                 href="/"
