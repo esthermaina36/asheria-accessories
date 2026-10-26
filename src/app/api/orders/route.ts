@@ -104,9 +104,9 @@ export async function POST(request: Request) {
       p_delivery_address: body.delivery_address.trim(),
       p_notes: body.notes?.trim() || null,
       p_items: body.items.map((item) => ({
-        product_id: item.product_id,
-        quantity: item.quantity,
-      })),
+  id: item.product_id,
+  quantity: item.quantity,
+})),
     });
 
     if (error) {
