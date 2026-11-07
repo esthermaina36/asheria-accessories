@@ -1,3 +1,4 @@
+
 type ProductCardProps = {
   id: string;
   name: string;
@@ -13,7 +14,7 @@ export default function ProductCard({
 }: ProductCardProps) {
   return (
     <div className="group">
-      <div className="flex aspect-square items-center justify-center overflow-hidden rounded-2xl bg-[#f1e4dc]">
+      <div className="flex aspect-square items-center justify-center overflow-hidden rounded-2xl bg-[#171717]">
         {image ? (
           <img
             src={image}
@@ -26,17 +27,17 @@ export default function ProductCard({
       </div>
 
       <div className="mt-4">
-        <h3 className="font-semibold text-[#2d2522]">
+        <h3 className="font-semibold text-[#F5F0E5]">
           {name}
         </h3>
 
-        <p className="mt-1 text-sm text-gray-600">
-          KSh {price.toLocaleString()}
+        <p className="mt-1 text-sm text-gray-300">
+          KSh {price.toLocaleString("en-KE")}
         </p>
 
         <a
           href={`/products/${id}`}
-          className="mt-3 inline-block rounded-full border border-[#9b6b52] px-5 py-2 text-sm font-medium text-[#9b6b52] transition hover:bg-[#9b6b52] hover:text-white"
+          className="mt-3 inline-block rounded-full border border-[#D4AF37] px-5 py-2 text-sm font-medium text-[#D4AF37] transition hover:bg-[#D4AF37] hover:text-black"
         >
           View Product
         </a>

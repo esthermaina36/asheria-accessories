@@ -1,11 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fffaf7;
-  --foreground: #2d2522;
-  --accent: #9b6b52;
-  --accent-dark: #76503e;
-  --cream: #f6eee8;
+  --bg-primary:#0B0B0B;
+  --bg-secondary:#1A1A1A;
+
+  --gold-primary:#C9A44C;
+  --gold-light:#E2C77D;
+
+  --text-primary:#F5F0E6;
+  --text-secondary:#FFFFFF;
+  
 }
 
 * {
@@ -18,16 +22,21 @@ html {
 
 body {
   margin: 0;
-  background: var(--background);
-  color: var(--foreground);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   font-family: Arial, Helvetica, sans-serif;
 }
 
 a {
-  color: inherit;
+  color: var(--gold-primary);
   text-decoration: none;
 }
 
 button {
   font: inherit;
+  background-color: var(--gold-primary);
+  color: var(--bg-primary);
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
 }

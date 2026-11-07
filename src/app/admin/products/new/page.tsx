@@ -104,7 +104,7 @@ export default function AddProductPage() {
 
   return (
     <main className="min-h-screen bg-[#fffaf7] text-[#2d2522]">
-      {/* Header */}
+      
       <header className="border-b border-[#eaded7] bg-white">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
           <div>
@@ -121,7 +121,7 @@ export default function AddProductPage() {
             href="/admin"
             className="rounded-full border border-[#9b6b52] px-5 py-2 text-sm font-medium text-[#9b6b52] transition hover:bg-[#9b6b52] hover:text-white"
           >
-            ← Dashboard
+            Dashboard
           </a>
         </div>
       </header>
@@ -225,33 +225,30 @@ export default function AddProductPage() {
               />
             </div>
 
-            {/* Category */}
-            <div>
-              <label
-                htmlFor="category"
-                className="mb-2 block text-sm font-medium"
-              >
-                Category
-              </label>
+            
+        {/* Category */}
+<div>
+  <label
+    htmlFor="category"
+    className="mb-2 block text-sm font-medium"
+  >
+    Category
+  </label>
 
-              <select
-                id="category"
-                value={category}
-                onChange={(event) => setCategory(event.target.value)}
-                className="w-full rounded-xl border border-[#ded2cb] bg-white px-4 py-3 outline-none transition focus:border-[#9b6b52]"
-              >
-                <option value="Jewellery">Jewellery</option>
-                <option value="Watches">Watches</option>
-                <option value="Necklaces">Necklaces</option>
-                <option value="Earrings">Earrings</option>
-                <option value="Hair Accessories">
-                  Hair Accessories
-                </option>
-                <option value="Bracelets">Bracelets</option>
-                <option value="Rings">Rings</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
+  <select
+    id="category"
+    value={category}
+    onChange={(event) => setCategory(event.target.value)}
+    required
+    className="w-full rounded-xl border border-[#ded2cb] bg-white px-4 py-3 outline-none transition focus:border-[#9b6b52]"
+  >
+    <option value="Jewellery">Jewellery</option>
+    <option value="Watches">Watches</option>
+    <option value="Hair Accessories">Hair Accessories</option>
+    <option value="Necklaces">Necklaces</option>
+    <option value="For Him">For Him</option>
+  </select>
+</div>
 
             {/* Image */}
             <div>

@@ -238,7 +238,7 @@ if (!updatedProduct) {
             href="/admin"
             className="rounded-full border border-[#9b6b52] px-5 py-2 text-sm font-medium text-[#9b6b52] transition hover:bg-[#9b6b52] hover:text-white"
           >
-            ← Dashboard
+            Dashboard
           </a>
         </div>
       </header>
@@ -332,33 +332,28 @@ if (!updatedProduct) {
                 className="w-full rounded-xl border border-[#ded2cb] px-4 py-3 outline-none transition focus:border-[#9b6b52]"
               />
             </div>
+<div>
+  <label
+    htmlFor="category"
+    className="mb-2 block text-sm font-medium"
+  >
+    Category
+  </label>
 
-            <div>
-              <label
-                htmlFor="category"
-                className="mb-2 block text-sm font-medium"
-              >
-                Category
-              </label>
-
-              <select
-                id="category"
-                value={category}
-                onChange={(event) => setCategory(event.target.value)}
-                className="w-full rounded-xl border border-[#ded2cb] bg-white px-4 py-3 outline-none transition focus:border-[#9b6b52]"
-              >
-                <option value="Jewellery">Jewellery</option>
-                <option value="Watches">Watches</option>
-                <option value="Necklaces">Necklaces</option>
-                <option value="Earrings">Earrings</option>
-                <option value="Hair Accessories">
-                  Hair Accessories
-                </option>
-                <option value="Bracelets">Bracelets</option>
-                <option value="Rings">Rings</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
+  <select
+    id="category"
+    value={category}
+    onChange={(event) => setCategory(event.target.value)}
+    required
+    className="w-full rounded-xl border border-[#ded2cb] bg-white px-4 py-3 outline-none transition focus:border-[#9b6b52]"
+  >
+    <option value="Jewellery">Jewellery</option>
+    <option value="Watches">Watches</option>
+    <option value="Hair Accessories">Hair Accessories</option>
+    <option value="Necklaces">Necklaces</option>
+    <option value="For Him">For Him</option>
+  </select>
+</div>
 
             <div>
               <label

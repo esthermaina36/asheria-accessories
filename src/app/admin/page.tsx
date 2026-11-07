@@ -119,7 +119,7 @@ export default async function AdminDashboard() {
 </a>
           </div>
 
-          {/* Product list */}
+          
           <div className="mt-6 overflow-hidden rounded-3xl bg-white shadow-sm">
             {products && products.length > 0 ? (
               <div className="divide-y divide-[#eee4de]">
