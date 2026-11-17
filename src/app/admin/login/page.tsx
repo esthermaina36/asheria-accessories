@@ -153,7 +153,7 @@ export default function AdminLoginPage() {
             href="/"
             className="text-sm text-gray-500 transition hover:text-[#9b6b52]"
           >
-            ← Back to Asheria
+            Back to Asheria
           </a>
         </div>
       </div>

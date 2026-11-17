@@ -1,6 +1,7 @@
 import ProductCard from "@/components/ProductCard";
 import { createClient } from "@/lib/supabase/server";
 import CartButton from "@/components/CartButton";
+export const dynamic = "force-dynamic";
 
 export default async function Home({
   searchParams,
@@ -23,6 +24,8 @@ if (category) {
 const { data: products, error } = await query.order("created_at", {
   ascending: false,
 });
+
+
   return (
     <main className="min-h-screen bg-[#0B0B0B] text-[#F5F0E5]">
     
@@ -30,12 +33,19 @@ const { data: products, error } = await query.order("created_at", {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         
           <a
-            href="#home"
-            className="text-2xl font-bold tracking-tight text-[	#D4AF37]"
-          >
-            Asheria
-            <span className="text-[#F5F0E5]"> Accessories</span>
-          </a>
+  href="#home"
+  className="flex items-center gap-4"
+>
+  <img
+    src="/logo.jpeg"
+    alt="Asheria Accessories Logo"
+    className="h-20 w-20 rounded-full object-cover"
+  />
+
+  <span className="text-2xl font-bold tracking-tight text-[#D4AF37]">
+    Asheria <br />Accessories
+  </span>
+</a>
 
         
           <nav className="hidden items-center gap-8 md:flex">
@@ -106,7 +116,8 @@ const { data: products, error } = await query.order("created_at", {
   <div className="mt-8 flex flex-wrap justify-center gap-4">
     <a
       href="#shop"
-      className="rounded-full bg-[	#D4AF37] px-7 py-3 font-medium text-white transition hover:bg-[#B8962E]"
+      
+      className="rounded-full border border-[	#D4AF37] px-7 py-3 font-medium text-[	#D4AF37] transition hover:bg-[	#D4AF37] hover:text-white"
     >
       Shop Now
     </a>
@@ -141,13 +152,13 @@ const { data: products, error } = await query.order("created_at", {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             
            <a
   href="/?category=Jewellery#shop"
   className="group rounded-3xl bg-[#171717] p-8 text-center transition hover:-translate-y-1 hover:shadow-lg"
 >
-              <div className="text-5xl">💎</div>
+             
 
               <h3 className="mt-5 text-xl font-semibold">
                 Jewellery
@@ -163,7 +174,7 @@ const { data: products, error } = await query.order("created_at", {
   href="/?category=Watches#shop"
   className="group rounded-3xl bg-[#171717] p-8 text-center transition hover:-translate-y-1 hover:shadow-lg"
 >
-              <div className="text-5xl">⌚</div>
+              
 
               <h3 className="mt-5 text-xl font-semibold">
                 Watches
@@ -179,7 +190,7 @@ const { data: products, error } = await query.order("created_at", {
   href="/?category=Hair%20Accessories#shop"
   className="group rounded-3xl bg-[#171717] p-8 text-center transition hover:-translate-y-1 hover:shadow-lg"
 >
-              <div className="text-5xl">🎀</div>
+              
 
               <h3 className="mt-5 text-xl font-semibold">
                 Hair Accessories
@@ -194,7 +205,7 @@ const { data: products, error } = await query.order("created_at", {
   href="/?category=Necklaces#shop"
   className="group rounded-3xl bg-[#171717] p-8 text-center transition hover:-translate-y-1 hover:shadow-lg"
 >
-              <div className="text-5xl">📿</div>
+              
 
               <h3 className="mt-5 text-xl font-semibold">
                 Necklaces
@@ -209,7 +220,7 @@ const { data: products, error } = await query.order("created_at", {
   href="/?category=For%20Him#shop"
   className="group rounded-3xl bg-[#171717] p-8 text-center transition hover:-translate-y-1 hover:shadow-lg"
 >
-  <div className="text-5xl">👔</div>
+  
 
   <h3 className="mt-5 text-xl font-semibold">
     For Him
@@ -217,6 +228,21 @@ const { data: products, error } = await query.order("created_at", {
 
   <p className="mt-2 text-sm text-gray-300">
     Stylish accessories for him.
+  </p>
+</a>
+
+<a
+  href="/?category=Bags#shop"
+  className="group rounded-3xl bg-[#171717] p-8 text-center transition hover:-translate-y-1 hover:shadow-lg"
+>
+  
+
+  <h3 className="mt-5 text-xl font-semibold">
+    Bags
+  </h3>
+
+  <p className="mt-2 text-sm text-gray-300">
+    Beautiful bags to complement every outfit.
   </p>
 </a>
           </div>

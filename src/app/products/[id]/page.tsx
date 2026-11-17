@@ -33,7 +33,7 @@ export default async function ProductPage({
 
   return (
     <main className="min-h-screen bg-[#fffaf7] text-[#2d2522]">
-      {/* Header */}
+    
       <header className="border-b border-[#eaded7] bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <a
@@ -52,10 +52,10 @@ export default async function ProductPage({
         </div>
       </header>
 
-      {/* Product */}
+     
       <section className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid gap-10 md:grid-cols-2">
-          {/* Product Image */}
+        
           <div className="overflow-hidden rounded-3xl bg-[#f1e4dc]">
             {product.image_url ? (
               <img
@@ -70,7 +70,6 @@ export default async function ProductPage({
             )}
           </div>
 
-          {/* Product Information */}
           <div className="flex flex-col justify-center">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#9b6b52]">
               {product.category}
@@ -118,7 +117,7 @@ export default async function ProductPage({
               href="/"
               className="mt-4 text-center text-sm font-medium text-[#9b6b52] hover:underline"
             >
-              ← Continue Shopping
+              Continue Shopping
             </a>
           </div>
         </div>

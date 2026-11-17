@@ -352,6 +352,7 @@ if (!updatedProduct) {
     <option value="Hair Accessories">Hair Accessories</option>
     <option value="Necklaces">Necklaces</option>
     <option value="For Him">For Him</option>
+    <option value="Bags">Bags</option>
   </select>
 </div>
 
